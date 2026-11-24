@@ -1,0 +1,23 @@
+{
+  "accuracy": 0.809,
+  "f1": 0.8103277060575969,
+  "n_train": 4000,
+  "n_test": 1000,
+  "majority_class_baseline": 0.504,
+  "feature_means": {
+    "age": 45.02125,
+    "credit_score": 679.48275,
+    "employment_years": 15.029,
+    "num_late_payments": 1.2065,
+    "annual_income": 60344.338175,
+    "loan_amount": 23773.0594025
+  },
+  "feature_stds": {
+    "age": 14.237783432008095,
+    "credit_score": 69.56030018105025,
+    "employment_years": 9.953940387218928,
+    "num_late_payments": 1.1167674522413322,
+    "annual_income": 28961.936728348122,
+    "loan_amount": 17943.65967692219
+  }
+}

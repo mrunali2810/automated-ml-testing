@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.coverage
+coverage.xml
+# Generated coverage HTML (CI uploads it as an artifact); keep the folder itself
+reports/coverage/*
+!reports/coverage/.gitkeep
+# Generated artefacts: rebuilt by `python -m src.model` (CI does this too)
+models/*.joblib
+data/processed/*.csv
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,125 @@
+..F..F.................................................................. [ 53%]
+...............FFFFFF.........FFFFF....................F....F.           [100%]
+=================================== FAILURES ===================================
+________________ test_good_applicant_approved_and_bad_rejected _________________
+tests/test_api.py:35: in test_good_applicant_approved_and_bad_rejected
+    assert good["approved"] is True and bad["approved"] is False
+E   assert (True is True and True is False)
+____________________________ test_batch_prediction _____________________________
+tests/test_api.py:54: in test_batch_prediction
+    assert body[0]["probability"] > body[1]["probability"], "Lower credit score should lower probability"
+E   AssertionError: Lower credit score should lower probability
+E   assert 1.0 > 1.0
+___ test_feature_moves_probability_in_expected_direction[credit_score-100-1] ___
+tests/test_directional.py:49: in test_feature_moves_probability_in_expected_direction
+    assert diff.mean() > 0.005, (
+E   AssertionError: 'credit_score' has almost no effect (mean expected-direction change 0.0000); the feature may be ignored or corrupted
+E   assert np.float64(0.0) > 0.005
+E    +  where np.float64(0.0) = <built-in method mean of numpy.ndarray object at 0x7f1303a694d0>()
+E    +    where <built-in method mean of numpy.ndarray object at 0x7f1303a694d0> = array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., ...0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]).mean
+_ test_feature_moves_probability_in_expected_direction[annual_income-30000.0-1] _
+tests/test_directional.py:49: in test_feature_moves_probability_in_expected_direction
+    assert diff.mean() > 0.005, (
+E   AssertionError: 'annual_income' has almost no effect (mean expected-direction change 0.0000); the feature may be ignored or corrupted
+E   assert np.float64(0.0) > 0.005
+E    +  where np.float64(0.0) = <built-in method mean of numpy.ndarray object at 0x7f1303a6a730>()
+E    +    where <built-in method mean of numpy.ndarray object at 0x7f1303a6a730> = array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., ...0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]).mean
+__ test_feature_moves_probability_in_expected_direction[employment_years-5-1] __
+tests/test_directional.py:49: in test_feature_moves_probability_in_expected_direction
+    assert diff.mean() > 0.005, (
+E   AssertionError: 'employment_years' has almost no effect (mean expected-direction change 0.0000); the feature may be ignored or corrupted
+E   assert np.float64(0.0) > 0.005
+E    +  where np.float64(0.0) = <built-in method mean of numpy.ndarray object at 0x7f1303a6acd0>()
+E    +    where <built-in method mean of numpy.ndarray object at 0x7f1303a6acd0> = array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., ...0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]).mean
+_ test_feature_moves_probability_in_expected_direction[loan_amount-20000.0--1] _
+tests/test_directional.py:49: in test_feature_moves_probability_in_expected_direction
+    assert diff.mean() > 0.005, (
+E   AssertionError: 'loan_amount' has almost no effect (mean expected-direction change 0.0000); the feature may be ignored or corrupted
+E   assert np.float64(0.0) > 0.005
+E    +  where np.float64(0.0) = <built-in method mean of numpy.ndarray object at 0x7f1303a6a610>()
+E    +    where <built-in method mean of numpy.ndarray object at 0x7f1303a6a610> = array([-0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0.,\n       -0., -0., -0., -0., -0., -0., -0., -0.,...-0., -0., -0.,\n       -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0.,\n       -0., -0., -0., -0., -0.]).mean
+_ test_feature_moves_probability_in_expected_direction[num_late_payments-3--1] _
+tests/test_directional.py:49: in test_feature_moves_probability_in_expected_direction
+    assert diff.mean() > 0.005, (
+E   AssertionError: 'num_late_payments' has almost no effect (mean expected-direction change 0.0000); the feature may be ignored or corrupted
+E   assert np.float64(0.0) > 0.005
+E    +  where np.float64(0.0) = <built-in method mean of numpy.ndarray object at 0x7f1303a69cb0>()
+E    +    where <built-in method mean of numpy.ndarray object at 0x7f1303a69cb0> = array([-0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0.,\n       -0., -0., -0., -0., -0., -0., -0., -0.,...-0., -0., -0.,\n       -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0.,\n       -0., -0., -0., -0., -0.]).mean
+______________ test_obviously_good_applicant_beats_obviously_bad _______________
+tests/test_directional.py:63: in test_obviously_good_applicant_beats_obviously_bad
+    assert p[0] > 0.9 and p[1] < 0.1, f"Good applicant p={p[0]:.3f}, bad applicant p={p[1]:.3f}"
+E   AssertionError: Good applicant p=1.000, bad applicant p=1.000
+E   assert (np.float64(1.0) > 0.9 and np.float64(1.0) < 0.1)
+____________________ test_accuracy_meets_minimum_threshold _____________________
+tests/test_model_accuracy.py:20: in test_accuracy_meets_minimum_threshold
+    assert acc >= config.MIN_ACCURACY, (
+E   AssertionError: Model accuracy 0.5040 is below the minimum 0.75 (set MIN_ACCURACY to change). Possible data or preprocessing bug.
+E   assert 0.504 >= 0.75
+E    +  where 0.75 = config.MIN_ACCURACY
+_____________ test_accuracy_has_not_regressed_vs_training_baseline _____________
+tests/test_model_accuracy.py:29: in test_accuracy_has_not_regressed_vs_training_baseline
+    assert acc >= floor, (
+E   AssertionError: Accuracy 0.5040 dropped more than 0.03 below the training baseline 0.8090: model or serving pipeline has degraded.
+E   assert 0.504 >= 0.779
+___________________ test_model_beats_majority_class_baseline ___________________
+tests/test_model_accuracy.py:37: in test_model_beats_majority_class_baseline
+    assert acc > metrics["majority_class_baseline"] + 0.10, (
+E   AssertionError: Accuracy 0.5040 is barely better than always predicting the majority class (0.5040); the model has learned little.
+E   assert 0.504 > (0.504 + 0.1)
+_________________________ test_f1_score_is_reasonable __________________________
+tests/test_model_accuracy.py:45: in test_f1_score_is_reasonable
+    assert f1 >= 0.70, f"F1 {f1:.4f} < 0.70 - model is unbalanced or broken"
+E   AssertionError: F1 0.6702 < 0.70 - model is unbalanced or broken
+E   assert 0.6702127659574468 >= 0.7
+_______________________ test_model_predicts_both_classes _______________________
+tests/test_model_accuracy.py:50: in test_model_predicts_both_classes
+    assert set(preds) == {0, 1}, f"Model collapsed to a single class: {set(preds)}"
+E   AssertionError: Model collapsed to a single class: {np.int64(1)}
+E   assert {np.int64(1)} == {0, 1}
+E     
+E     Extra items in the right set:
+E     0
+E     Use -v to get more diff
+_____________ test_prepare_features_does_not_change_numeric_values _____________
+tests/test_preprocessing.py:26: in test_prepare_features_does_not_change_numeric_values
+    np.testing.assert_allclose(
+E   AssertionError: 
+E   Not equal to tolerance rtol=1e-07, atol=0
+E   prepare_features altered column 'credit_score' (scaling / unit / swap bug?)
+E   Mismatched elements: 1000 / 1000 (100%)
+E   First 5 mismatches are at indices:
+E    [0]: 76306.83 (ACTUAL), 607.0 (DESIRED)
+E    [1]: 87283.09 (ACTUAL), 704.0 (DESIRED)
+E    [2]: 45788.53 (ACTUAL), 599.0 (DESIRED)
+E    [3]: 50893.46 (ACTUAL), 641.0 (DESIRED)
+E    [4]: 183458.92 (ACTUAL), 657.0 (DESIRED)
+E   Max absolute difference among violations: 299179.
+E   Max relative difference among violations: 369.26047386
+E    ACTUAL: array([ 76306.83,  87283.09,  45788.53,  50893.46, 183458.92,  90320.83,
+E           49614.17,  51382.6 ,  33329.24,  38535.56,  25079.53,  17137.84,
+E           37915.9 ,  42007.5 ,  31260.11,  21434.61, 124431.96,  63251.09,...
+E    DESIRED: array([607., 704., 599., 641., 657., 659., 658., 617., 495., 650., 612.,
+E          645., 635., 782., 687., 582., 608., 659., 770., 606., 783., 652.,
+E          637., 525., 733., 650., 621., 829., 681., 755., 719., 546., 549.,...
+______________ test_serving_features_match_training_distribution _______________
+tests/test_preprocessing.py:65: in test_serving_features_match_training_distribution
+    assert shift < 0.15, (
+E   AssertionError: Feature 'credit_score' distribution shifted by 833.91 training-stds between training and serving (served mean=58686.29, training mean=679.48)
+E   assert np.float64(833.9067946662243) < 0.15
+=========================== short test summary info ============================
+FAILED tests/test_api.py::test_good_applicant_approved_and_bad_rejected - ass...
+FAILED tests/test_api.py::test_batch_prediction - AssertionError: Lower credi...
+FAILED tests/test_directional.py::test_feature_moves_probability_in_expected_direction[credit_score-100-1]
+FAILED tests/test_directional.py::test_feature_moves_probability_in_expected_direction[annual_income-30000.0-1]
+FAILED tests/test_directional.py::test_feature_moves_probability_in_expected_direction[employment_years-5-1]
+FAILED tests/test_directional.py::test_feature_moves_probability_in_expected_direction[loan_amount-20000.0--1]
+FAILED tests/test_directional.py::test_feature_moves_probability_in_expected_direction[num_late_payments-3--1]
+FAILED tests/test_directional.py::test_obviously_good_applicant_beats_obviously_bad
+FAILED tests/test_model_accuracy.py::test_accuracy_meets_minimum_threshold - ...
+FAILED tests/test_model_accuracy.py::test_accuracy_has_not_regressed_vs_training_baseline
+FAILED tests/test_model_accuracy.py::test_model_beats_majority_class_baseline
+FAILED tests/test_model_accuracy.py::test_f1_score_is_reasonable - AssertionE...
+FAILED tests/test_model_accuracy.py::test_model_predicts_both_classes - Asser...
+FAILED tests/test_preprocessing.py::test_prepare_features_does_not_change_numeric_values
+FAILED tests/test_preprocessing.py::test_serving_features_match_training_distribution
+15 failed, 119 passed in 1.25s

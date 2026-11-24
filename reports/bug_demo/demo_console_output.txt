@@ -1,0 +1,116 @@
+
+==============================================================================
+INJECTED BUG 'scaling': scale/unit bug: annual_income divided by 1000 at serving time
+==============================================================================
+
+[1/2] Bug injected into temporary copy (src/preprocessing.py). Running tests...
+
+E   AssertionError: 'annual_income' has almost no effect (mean expected-direction change 0.0001); the feature may be ignored or corrupted
+E   assert np.float64(0.00010988187983736967) > 0.005
+E    +  where np.float64(0.00010988187983736967) = <built-in method mean of numpy.ndarray object at 0x7f9a9ba22310>()
+E    +    where <built-in method mean of numpy.ndarray object at 0x7f9a9ba22310> = array([2.43235297e-04, 5.09347206e-05, 6.58151221e-05, 6.60199831e-05,\n       3.14371710e-05, 2.31129601e-04, 9.902933...1.57962743e-05, 9.93355189e-07, 2.16110862e-04,\n       2.29161351e-04, 8.57169666e-06, 2.19628193e-04, 4.89919056e-05]).mean
+E   AssertionError: Model accuracy 0.6630 is below the minimum 0.75 (set MIN_ACCURACY to change). Possible data or preprocessing bug.
+E   assert 0.663 >= 0.75
+E    +  where 0.75 = config.MIN_ACCURACY
+E   AssertionError: Accuracy 0.6630 dropped more than 0.03 below the training baseline 0.8090: model or serving pipeline has degraded.
+E   assert 0.663 >= 0.779
+E   AssertionError: F1 0.5193 < 0.70 - model is unbalanced or broken
+E   assert 0.5192582025677603 >= 0.7
+E   AssertionError: 
+E   Not equal to tolerance rtol=1e-07, atol=0
+E   prepare_features altered column 'annual_income' (scaling / unit / swap bug?)
+E   Mismatched elements: 1000 / 1000 (100%)
+E   First 5 mismatches are at indices:
+E    [0]: 76.30683 (ACTUAL), 76306.83 (DESIRED)
+E    [1]: 87.28309 (ACTUAL), 87283.09 (DESIRED)
+E    [2]: 45.78853 (ACTUAL), 45788.53 (DESIRED)
+E    [3]: 50.89346 (ACTUAL), 50893.46 (DESIRED)
+E    [4]: 183.45892 (ACTUAL), 183458.92 (DESIRED)
+E   Max absolute difference among violations: 299700.
+E   Max relative difference among violations: 0.999
+E    ACTUAL: array([ 76.30683,  87.28309,  45.78853,  50.89346, 183.45892,  90.32083,
+E           49.61417,  51.3826 ,  33.32924,  38.53556,  25.07953,  17.13784,
+E           37.9159 ,  42.0075 ,  31.26011,  21.43461, 124.43196,  63.25109,...
+E    DESIRED: array([ 76306.83,  87283.09,  45788.53,  50893.46, 183458.92,  90320.83,
+E           49614.17,  51382.6 ,  33329.24,  38535.56,  25079.53,  17137.84,
+E           37915.9 ,  42007.5 ,  31260.11,  21434.61, 124431.96,  63251.09,...
+E   AssertionError: Feature 'annual_income' distribution shifted by 2.08 training-stds between training and serving (served mean=58.69, training mean=60344.34)
+E   assert np.float64(2.0815476689541286) < 0.15
+FAILED tests/test_directional.py::test_feature_moves_probability_in_expected_direction[annual_income-30000.0-1]
+FAILED tests/test_model_accuracy.py::test_accuracy_meets_minimum_threshold - ...
+FAILED tests/test_model_accuracy.py::test_accuracy_has_not_regressed_vs_training_baseline
+FAILED tests/test_model_accuracy.py::test_f1_score_is_reasonable - AssertionE...
+FAILED tests/test_preprocessing.py::test_prepare_features_does_not_change_numeric_values
+FAILED tests/test_preprocessing.py::test_serving_features_match_training_distribution
+6 failed, 128 passed in 1.15s
+
+-> exit code 1 (non-zero == tests FAILED, bug detected)
+
+[2/2] Bug fixed (original src/preprocessing.py restored). Running tests again...
+
+134 passed in 1.06s
+
+-> exit code 0 (0 == all tests PASS)
+
+RESULT for 'scaling': PASS - framework caught the bug and passed after the fix
+Logs: /home/claude/automated-ml-testing/reports/bug_demo/scaling_1_buggy_run.log
+      /home/claude/automated-ml-testing/reports/bug_demo/scaling_2_fixed_run.log
+
+==============================================================================
+INJECTED BUG 'swap': column mix-up bug: credit_score and annual_income values swapped
+==============================================================================
+
+[1/2] Bug injected into temporary copy (src/preprocessing.py). Running tests...
+
+E   assert (True is True and True is False)
+E   AssertionError: Lower credit score should lower probability
+E   assert 1.0 > 1.0
+E   AssertionError: 'credit_score' has almost no effect (mean expected-direction change 0.0000); the feature may be ignored or corrupted
+E   assert np.float64(0.0) > 0.005
+E    +  where np.float64(0.0) = <built-in method mean of numpy.ndarray object at 0x7f1303a694d0>()
+E    +    where <built-in method mean of numpy.ndarray object at 0x7f1303a694d0> = array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., ...0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]).mean
+E   AssertionError: 'annual_income' has almost no effect (mean expected-direction change 0.0000); the feature may be ignored or corrupted
+E   assert np.float64(0.0) > 0.005
+E    +  where np.float64(0.0) = <built-in method mean of numpy.ndarray object at 0x7f1303a6a730>()
+E    +    where <built-in method mean of numpy.ndarray object at 0x7f1303a6a730> = array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., ...0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]).mean
+E   AssertionError: 'employment_years' has almost no effect (mean expected-direction change 0.0000); the feature may be ignored or corrupted
+E   assert np.float64(0.0) > 0.005
+E    +  where np.float64(0.0) = <built-in method mean of numpy.ndarray object at 0x7f1303a6acd0>()
+E    +    where <built-in method mean of numpy.ndarray object at 0x7f1303a6acd0> = array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., ...0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,\n       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]).mean
+E   AssertionError: 'loan_amount' has almost no effect (mean expected-direction change 0.0000); the feature may be ignored or corrupted
+E   assert np.float64(0.0) > 0.005
+E    +  where np.float64(0.0) = <built-in method mean of numpy.ndarray object at 0x7f1303a6a610>()
+E    +    where <built-in method mean of numpy.ndarray object at 0x7f1303a6a610> = array([-0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0.,\n       -0., -0., -0., -0., -0., -0., -0., -0.,...-0., -0., -0.,\n       -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0.,\n       -0., -0., -0., -0., -0.]).mean
+E   AssertionError: 'num_late_payments' has almost no effect (mean expected-direction change 0.0000); the feature may be ignored or corrupted
+E   assert np.float64(0.0) > 0.005
+E    +  where np.float64(0.0) = <built-in method mean of numpy.ndarray object at 0x7f1303a69cb0>()
+E    +    where <built-in method mean of numpy.ndarray object at 0x7f1303a69cb0> = array([-0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0.,\n       -0., -0., -0., -0., -0., -0., -0., -0.,...-0., -0., -0.,\n       -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0., -0.,\n       -0., -0., -0., -0., -0.]).mean
+E   AssertionError: Good applicant p=1.000, bad applicant p=1.000
+E   assert (np.float64(1.0) > 0.9 and np.float64(1.0) < 0.1)
+E   AssertionError: Model accuracy 0.5040 is below the minimum 0.75 (set MIN_ACCURACY to change). Possible data or preprocessing bug.
+E   assert 0.504 >= 0.75
+E    +  where 0.75 = config.MIN_ACCURACY
+E   AssertionError: Accuracy 0.5040 dropped more than 0.03 below the training baseline 0.8090: model or serving pipeline has degraded.
+E   assert 0.504 >= 0.779
+E   AssertionError: Accuracy 0.5040 is barely better than always predicting the majority class (0.5040); the model has learned little.
+E   assert 0.504 > (0.504 + 0.1)
+E   AssertionError: F1 0.6702 < 0.70 - model is unbalanced or broken
+E   assert 0.6702127659574468 >= 0.7
+E   AssertionError: Model collapsed to a single class: {np.int64(1)}
+E   assert {np.int64(1)} == {0, 1}
+E     
+E     Extra items in the right set:
+E     0
+E     Use -v to get more diff
+
+-> exit code 1 (non-zero == tests FAILED, bug detected)
+
+[2/2] Bug fixed (original src/preprocessing.py restored). Running tests again...
+
+134 passed in 1.09s
+
+-> exit code 0 (0 == all tests PASS)
+
+RESULT for 'swap': PASS - framework caught the bug and passed after the fix
+Logs: /home/claude/automated-ml-testing/reports/bug_demo/swap_1_buggy_run.log
+      /home/claude/automated-ml-testing/reports/bug_demo/swap_2_fixed_run.log
